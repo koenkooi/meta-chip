@@ -12,7 +12,10 @@ PV = "${LINUX_VERSION}+git${SRCPV}"
 
 SRCREV ?= "c6f52f1c79744c37bae3bdfb50f626f6317ccc3b"
 BRANCH ?= "debian/4.3.0-ntc-6"
-SRC_URI = "git://github.com/NextThingCo/CHIP-linux.git;protocol=git;branch=${BRANCH} \
+SRC_URI = "git://github.com/chip-community/CHIP-linux.git;protocol=git;branch=${BRANCH} \
+           file://0001-ARM-fix-uaccess_with_memcpy-with-SW_DOMAIN_PAN.patch \
+           file://0002-ARM-8580-1-Remove-orphaned-__addr_ok-definition.patch \
+           file://0003-ARM-uaccess-remove-put_user-code-duplication.patch \
            file://defconfig \
           "
 

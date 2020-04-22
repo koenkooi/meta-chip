@@ -1,0 +1,38 @@
+From 1d91ff48818619cf56cefb5b9f053b661f66a674 Mon Sep 17 00:00:00 2001
+From: Robin Murphy <robin.murphy@arm.com>
+Date: Thu, 9 Jun 2016 11:21:20 +0100
+Subject: [PATCH 2/3] ARM: 8580/1: Remove orphaned __addr_ok() definition
+
+Since commit 8c56cc8be5b3 ("ARM: 7449/1: use generic strnlen_user and
+strncpy_from_user functions"), the definition of __addr_ok() has been
+languishing unused; eradicate the sucker.
+
+Cc: Russell King <linux@armlinux.org.uk>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+Signed-off-by: Russell King <rmk+kernel@arm.linux.org.uk>
+---
+ arch/arm/include/asm/uaccess.h | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/arch/arm/include/asm/uaccess.h b/arch/arm/include/asm/uaccess.h
+index 35c9db857ebe..7badc3e55109 100644
+--- a/arch/arm/include/asm/uaccess.h
++++ b/arch/arm/include/asm/uaccess.h
+@@ -104,14 +104,6 @@ static inline void set_fs(mm_segment_t fs)
+ 
+ #define segment_eq(a, b)	((a) == (b))
+ 
+-#define __addr_ok(addr) ({ \
+-	unsigned long flag; \
+-	__asm__("cmp %2, %0; movlo %0, #0" \
+-		: "=&r" (flag) \
+-		: "0" (current_thread_info()->addr_limit), "r" (addr) \
+-		: "cc"); \
+-	(flag == 0); })
+-
+ /* We use 33-bit arithmetic here... */
+ #define __range_ok(addr, size) ({ \
+ 	unsigned long flag, roksum; \
+-- 
+2.11.0
+
