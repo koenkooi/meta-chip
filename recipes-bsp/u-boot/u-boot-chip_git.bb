@@ -14,7 +14,7 @@ PV = "${UBOOT_VERSION}+git${SRCPV}"
 SRCREV ?= "c23364e2cd21ef74f7405fa03e537582f062c4c0"
 BRANCH ?= "nextthing/2016.01/chip"
 SRC_URI = " \
-	git://github.com/NextThingCo/CHIP-u-boot.git;branch=${BRANCH} \
+	git://github.com/chip-community/CHIP-u-boot.git;branch=${BRANCH} \
 	file://gcc6.patch \
 	"
 S = "${WORKDIR}/git"
